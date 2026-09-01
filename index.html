@@ -2,24 +2,27 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>✨</text></svg>">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>⚡</text></svg>">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Esha ✨</title>
+  <title>Esha ⚡</title>
   <meta name="robots" content="noindex, nofollow">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 
   <style>
     :root {
-      --cork-bg: #e2c9a9;
-      --cork-pattern: radial-gradient(#d4b896 15%, transparent 16%), radial-gradient(#caa982 15%, transparent 16%);
-      --polaroid-bg: #fffdfa;
-      --accent-red: #e11d48;
-      --pin-red: radial-gradient(circle at 35% 35%, #ff4d6d, #be123c 70%, #881337);
-      --text: #292524;
-      --text-muted: #78716c;
-      --shadow-pin: 0 12px 24px -6px rgba(41, 37, 36, 0.25), 0 4px 10px rgba(0, 0, 0, 0.12);
+      --bg-board: #0f172a;
+      --board-pattern: radial-gradient(#1e293b 15%, transparent 16%), radial-gradient(#0b1120 15%, transparent 16%);
+      --card-bg: #ffffff;
+      --card-alt: #1e293b;
+      --accent-blue: #38bdf8;
+      --accent-navy: #1d4ed8;
+      --pin-dark: radial-gradient(circle at 35% 35%, #60a5fa, #1d4ed8 70%, #0f172a);
+      --text-main: #0f172a;
+      --text-light: #f8fafc;
+      --text-muted: #64748b;
+      --shadow-pin: 0 16px 30px -8px rgba(0, 0, 0, 0.6), 0 4px 12px rgba(0, 0, 0, 0.4);
       --font-note: 'Caveat', cursive;
       --font-body: 'Plus Jakarta Sans', sans-serif;
     }
@@ -33,48 +36,50 @@
 
     body {
       font-family: var(--font-body);
-      background-color: var(--cork-bg);
-      background-image: var(--cork-pattern);
-      background-size: 32px 32px;
-      background-position: 0 0, 16px 16px;
-      color: var(--text);
+      background-color: var(--bg-board);
+      background-image: var(--board-pattern);
+      background-size: 28px 28px;
+      background-position: 0 0, 14px 14px;
+      color: var(--text-light);
       min-height: 100vh;
       display: flex;
       flex-direction: column;
       align-items: center;
-      padding: 30px 16px 60px;
-      box-shadow: inset 0 0 100px rgba(0, 0, 0, 0.2);
+      padding: 36px 16px 70px;
+      box-shadow: inset 0 0 120px rgba(0, 0, 0, 0.8);
     }
 
+    /* Metallic Silver / Blue Push Pin */
     .push-pin {
       width: 18px;
       height: 18px;
-      background: var(--pin-red);
+      background: var(--pin-dark);
       border-radius: 50%;
       position: absolute;
       top: -9px;
       left: 50%;
       transform: translateX(-50%);
-      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.35), inset 0 1px 2px rgba(255, 255, 255, 0.6);
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5), inset 0 1px 2px rgba(255, 255, 255, 0.7);
       z-index: 10;
     }
     .push-pin::after {
       content: '';
       position: absolute;
-      top: 5px;
-      left: 5px;
+      top: 4px;
+      left: 4px;
       width: 4px;
       height: 4px;
-      background: rgba(255, 255, 255, 0.8);
+      background: rgba(255, 255, 255, 0.9);
       border-radius: 50%;
     }
 
+    /* Lock Screen Modal */
     #lockScreen {
       position: fixed;
       inset: 0;
-      backdrop-filter: blur(16px);
-      -webkit-backdrop-filter: blur(16px);
-      background: rgba(245, 240, 235, 0.88);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      background: rgba(15, 23, 42, 0.92);
       display: flex;
       flex-direction: column;
       align-items: center;
@@ -85,745 +90,532 @@
 
     .lock-card {
       position: relative;
-      background: var(--polaroid-bg);
-      padding: 40px 32px 32px;
-      border-radius: 12px;
-      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
-      border: 1px solid rgba(0,0,0,0.06);
+      background: #ffffff;
+      padding: 42px 32px 36px;
+      border-radius: 16px;
+      box-shadow: 0 25px 50px rgba(0, 0, 0, 0.5);
+      border: 1px solid rgba(255, 255, 255, 0.2);
       text-align: center;
       max-width: 400px;
       width: 100%;
       transform: rotate(-1deg);
+      color: var(--text-main);
     }
 
     .lock-title {
       font-family: var(--font-note);
-      font-size: 2.2rem;
+      font-size: 2.3rem;
       font-weight: 700;
-      color: var(--text);
       line-height: 1.1;
       margin-bottom: 4px;
+      color: #0f172a;
     }
     .lock-sub {
       color: var(--text-muted);
       font-size: 0.85rem;
-      margin```html
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <meta name="description" content="Production-ready, responsive single-page web template featuring modern semantics, integrated CSS styles, and accessible interactivity." />
-  <meta name="theme-color" content="#2563eb" />
-  <title>Modern Responsive Application</title>
-
-  <!-- Google Fonts: Inter -->
-  <link rel="preconnect" href="[https://fonts.googleapis.com](https://fonts.googleapis.com)" />
-  <link rel="preconnect" href="[https://fonts.gstatic.com](https://fonts.gstatic.com)" crossorigin />
-  <link href="[https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap](https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap)" rel="stylesheet" />
-
-  <style>
-    /* ==========================================================================
-       CSS Variables & Global Reset
-       ========================================================================== */
-    :root {
-      --primary: #2563eb;
-      --primary-hover: #1d4ed8;
-      --primary-light: #dbeafe;
-      --secondary: #0f172a;
-      --surface: #ffffff;
-      --surface-alt: #f8fafc;
-      --surface-card: #ffffff;
-      --border: #e2e8f0;
-      --border-focus: #94a3b8;
-      --text-main: #1e293b;
-      --text-muted: #64748b;
-      --text-inverse: #ffffff;
-      --success: #10b981;
-      --radius-sm: 6px;
-      --radius-md: 10px;
-      --radius-lg: 16px;
-      --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
-      --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -2px rgba(0, 0, 0, 0.1);
-      --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -4px rgba(0, 0, 0, 0.1);
-      --font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-      --transition: 0.2s cubic-bezier(0.4, 0, 0.2, 1);
-      --max-width: 1200px;
+      margin-bottom: 24px;
     }
 
-    [data-theme="dark"] {
-      --primary: #3b82f6;
-      --primary-hover: #60a5fa;
-      --primary-light: #1e293b;
-      --secondary: #f8fafc;
-      --surface: #0f172a;
-      --surface-alt: #020617;
-      --surface-card: #1e293b;
-      --border: #334155;
-      --border-focus: #64748b;
-      --text-main: #f8fafc;
-      --text-muted: #94a3b8;
-      --text-inverse: #0f172a;
-      --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.5);
-      --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.3);
-      --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.4);
-    }
-
-    *, *::before, *::after {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
-
-    html {
-      scroll-behavior: smooth;
-      font-size: 16px;
-    }
-
-    body {
-      font-family: var(--font-family);
-      background-color: var(--surface);
-      color: var(--text-main);
-      line-height: 1.6;
-      min-height: 100vh;
+    .pin-group {
       display: flex;
-      flex-direction: column;
-      transition: background-color var(--transition), color var(--transition);
-      text-rendering: optimizeLegibility;
-      -webkit-font-smoothing: antialiased;
+      justify-content: center;
+      gap: 7px;
+      margin-bottom: 16px;
     }
-
-    /* ==========================================================================
-       Utility & Layout Components
-       ========================================================================== */
-    .container {
-      width: 100%;
-      max-width: var(--max-width);
-      margin: 0 auto;
-      padding: 0 1.5rem;
-    }
-
-    .section {
-      padding: 5rem 0;
-    }
-
-    .section-alt {
-      background-color: var(--surface-alt);
-    }
-
-    .section-header {
+    .pin-box {
+      width: 36px;
+      height: 48px;
+      border: 2px solid #cbd5e1;
+      border-radius: 8px;
+      background: #f8fafc;
       text-align: center;
-      max-width: 680px;
-      margin: 0 auto 3.5rem;
-    }
-
-    .section-header h2 {
-      font-size: 2.25rem;
+      font-size: 1.3rem;
       font-weight: 700;
-      letter-spacing: -0.025em;
-      margin-bottom: 0.75rem;
-    }
-
-    .section-header p {
-      color: var(--text-muted);
-      font-size: 1.125rem;
-    }
-
-    .btn {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      padding: 0.75rem 1.5rem;
-      font-size: 1rem;
-      font-weight: 600;
-      border-radius: var(--radius-sm);
-      border: 1px solid transparent;
-      cursor: pointer;
-      text-decoration: none;
-      transition: all var(--transition);
-    }
-
-    .btn-primary {
-      background-color: var(--primary);
-      color: #ffffff;
-    }
-
-    .btn-primary:hover {
-      background-color: var(--primary-hover);
-      box-shadow: var(--shadow-md);
-      transform: translateY(-1px);
-    }
-
-    .btn-secondary {
-      background-color: transparent;
-      border-color: var(--border);
-      color: var(--text-main);
-    }
-
-    .btn-secondary:hover {
-      background-color: var(--surface-alt);
-      border-color: var(--border-focus);
-    }
-
-    /* ==========================================================================
-       Navigation Bar
-       ========================================================================== */
-    .navbar {
-      position: sticky;
-      top: 0;
-      background-color: var(--surface);
-      border-bottom: 1px solid var(--border);
-      z-index: 1000;
-      backdrop-filter: blur(8px);
-      transition: background-color var(--transition), border-color var(--transition);
-    }
-
-    .navbar .container {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      height: 4.5rem;
-    }
-
-    .nav-brand {
-      display: flex;
-      align-items: center;
-      gap: 0.75rem;
-      font-weight: 700;
-      font-size: 1.25rem;
-      color: var(--text-main);
-      text-decoration: none;
-    }
-
-    .brand-icon {
-      width: 2rem;
-      height: 2rem;
-      background: linear-gradient(135deg, var(--primary), #818cf8);
-      border-radius: var(--radius-sm);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      color: #ffffff;
-      font-weight: 800;
-      font-size: 1.1rem;
-    }
-
-    .nav-links {
-      display: flex;
-      list-style: none;
-      align-items: center;
-      gap: 2rem;
-    }
-
-    .nav-links a {
-      text-decoration: none;
-      color: var(--text-muted);
-      font-weight: 500;
-      transition: color var(--transition);
-    }
-
-    .nav-links a:hover,
-    .nav-links a.active {
-      color: var(--primary);
-    }
-
-    .nav-actions {
-      display: flex;
-      align-items: center;
-      gap: 1rem;
-    }
-
-    .theme-toggle-btn {
-      background: none;
-      border: 1px solid var(--border);
-      border-radius: var(--radius-sm);
-      padding: 0.5rem;
-      cursor: pointer;
-      color: var(--text-main);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      transition: all var(--transition);
-    }
-
-    .theme-toggle-btn:hover {
-      background-color: var(--surface-alt);
-    }
-
-    /* ==========================================================================
-       Hero Section
-       ========================================================================== */
-    .hero {
-      padding: 6rem 0 5rem;
-      text-align: center;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-    }
-
-    .hero-badge {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.5rem;
-      padding: 0.25rem 0.875rem;
-      border-radius: 9999px;
-      background-color: var(--primary-light);
-      color: var(--primary);
-      font-size: 0.875rem;
-      font-weight: 600;
-      margin-bottom: 1.5rem;
-    }
-
-    .hero h1 {
-      font-size: 3.5rem;
-      font-weight: 800;
-      line-height: 1.15;
-      letter-spacing: -0.03em;
-      max-width: 850px;
-      margin-bottom: 1.5rem;
-    }
-
-    .hero h1 span {
-      background: linear-gradient(135deg, var(--primary), #818cf8);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-    }
-
-    .hero p {
-      font-size: 1.25rem;
-      color: var(--text-muted);
-      max-width: 640px;
-      margin-bottom: 2.5rem;
-    }
-
-    .hero-cta-group {
-      display: flex;
-      gap: 1rem;
-      justify-content: center;
-      flex-wrap: wrap;
-    }
-
-    /* ==========================================================================
-       Features Grid
-       ========================================================================== */
-    .features-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-      gap: 2rem;
-    }
-
-    .feature-card {
-      background-color: var(--surface-card);
-      border: 1px solid var(--border);
-      padding: 2rem;
-      border-radius: var(--radius-lg);
-      box-shadow: var(--shadow-sm);
-      transition: transform var(--transition), box-shadow var(--transition);
-    }
-
-    .feature-card:hover {
-      transform: translateY(-4px);
-      box-shadow: var(--shadow-lg);
-    }
-
-    .feature-icon-wrapper {
-      width: 3rem;
-      height: 3rem;
-      border-radius: var(--radius-md);
-      background-color: var(--primary-light);
-      color: var(--primary);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      margin-bottom: 1.25rem;
-      font-size: 1.5rem;
-    }
-
-    .feature-card h3 {
-      font-size: 1.25rem;
-      font-weight: 600;
-      margin-bottom: 0.5rem;
-    }
-
-    .feature-card p {
-      color: var(--text-muted);
-      font-size: 0.95rem;
-      line-height: 1.5;
-    }
-
-    /* ==========================================================================
-       Interactive Component: Dynamic Data Table
-       ========================================================================== */
-    .table-container {
-      background-color: var(--surface-card);
-      border: 1px solid var(--border);
-      border-radius: var(--radius-lg);
-      box-shadow: var(--shadow-sm);
-      overflow-x: auto;
-    }
-
-    table {
-      width: 100%;
-      border-collapse: collapse;
-      text-align: left;
-    }
-
-    th, td {
-      padding: 1rem 1.5rem;
-      border-bottom: 1px solid var(--border);
-    }
-
-    th {
-      background-color: var(--surface-alt);
-      font-weight: 600;
-      color: var(--text-muted);
-      font-size: 0.875rem;
-      text-transform: uppercase;
-      letter-spacing: 0.05em;
-    }
-
-    tr:last-child td {
-      border-bottom: none;
-    }
-
-    .badge-status {
-      display: inline-block;
-      padding: 0.25rem 0.5rem;
-      border-radius: 4px;
-      font-size: 0.75rem;
-      font-weight: 600;
-    }
-
-    .badge-active {
-      background-color: #d1fae5;
-      color: #065f46;
-    }
-
-    [data-theme="dark"] .badge-active {
-      background-color: #064e3b;
-      color: #6ee7b7;
-    }
-
-    /* ==========================================================================
-       Contact Form
-       ========================================================================== */
-    .form-wrapper {
-      max-width: 600px;
-      margin: 0 auto;
-      background-color: var(--surface-card);
-      border: 1px solid var(--border);
-      padding: 2.5rem;
-      border-radius: var(--radius-lg);
-      box-shadow: var(--shadow-sm);
-    }
-
-    .form-group {
-      margin-bottom: 1.5rem;
-    }
-
-    .form-group label {
-      display: block;
-      font-weight: 500;
-      margin-bottom: 0.5rem;
-      font-size: 0.95rem;
-    }
-
-    .form-control {
-      width: 100%;
-      padding: 0.75rem 1rem;
-      font-family: inherit;
-      font-size: 1rem;
-      border: 1px solid var(--border);
-      border-radius: var(--radius-sm);
-      background-color: var(--surface);
-      color: var(--text-main);
-      transition: border-color var(--transition), box-shadow var(--transition);
-    }
-
-    .form-control:focus {
       outline: none;
-      border-color: var(--primary);
-      box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.15);
+      color: #0f172a;
+      transition: all 0.2s;
     }
-
-    textarea.form-control {
-      resize: vertical;
-      min-height: 120px;
+    .pin-box:focus {
+      border-color: var(--accent-navy);
+      background: #ffffff;
+      box-shadow: 0 0 0 3px rgba(29, 78, 216, 0.2);
     }
-
-    /* ==========================================================================
-       Footer
-       ========================================================================== */
-    footer {
-      background-color: var(--surface-alt);
-      border-top: 1px solid var(--border);
-      padding: 4rem 0 2rem;
-      margin-top: auto;
-    }
-
-    .footer-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-      gap: 3rem;
-      margin-bottom: 3rem;
-    }
-
-    .footer-column h4 {
-      font-size: 0.95rem;
+    .pin-err {
+      color: #ef4444;
+      font-size: 0.85rem;
       font-weight: 600;
-      margin-bottom: 1.25rem;
+      height: 20px;
     }
 
-    .footer-column ul {
-      list-style: none;
+    /* Main Board Container */
+    #boardContent {
+      display: none;
+      width: 100%;
+      max-width: 940px;
+      animation: dropIn 0.5s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    }
+    @keyframes dropIn {
+      from { opacity: 0; transform: scale(0.96) translateY(20px); }
+      to { opacity: 1; transform: scale(1) translateY(0); }
     }
 
-    .footer-column li {
-      margin-bottom: 0.75rem;
-    }
-
-    .footer-column a {
-      text-decoration: none;
-      color: var(--text-muted);
-      font-size: 0.9rem;
-      transition: color var(--transition);
-    }
-
-    .footer-column a:hover {
-      color: var(--primary);
-    }
-
-    .footer-bottom {
-      border-top: 1px solid var(--border);
-      padding-top: 2rem;
+    /* Main Board Header Tag */
+    .board-header {
+      position: relative;
+      background: #ffffff;
+      width: fit-content;
+      margin: 0 auto 45px;
+      padding: 12px 34px;
+      border-radius: 6px;
+      box-shadow: var(--shadow-pin);
+      transform: rotate(1deg);
       text-align: center;
-      color: var(--text-muted);
-      font-size: 0.875rem;
+    }
+    .board-header h1 {
+      font-family: var(--font-note);
+      font-size: 2.8rem;
+      color: #0f172a;
+      line-height: 1;
+    }
+    .board-header span {
+      color: var(--accent-navy);
     }
 
-    /* ==========================================================================
-       Responsive Media Queries
-       ========================================================================== */
-    @media (max-width: 768px) {
-      .hero h1 {
-        font-size: 2.5rem;
-      }
-      .nav-links {
-        display: none;
-      }
-      .section {
-        padding: 3.5rem 0;
-      }
-      .form-wrapper {
-        padding: 1.5rem;
-      }
+    .section-label {
+      font-family: var(--font-note);
+      font-size: 1.85rem;
+      color: var(--accent-blue);
+      margin-bottom: 20px;
+      display: inline-block;
+      background: rgba(30, 41, 59, 0.75);
+      border: 1px solid rgba(56, 189, 248, 0.2);
+      padding: 4px 16px;
+      border-radius: 8px;
+    }
+
+    /* Polaroid Gallery */
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 32px;
+      margin-bottom: 60px;
+    }
+
+    .polaroid-card {
+      position: relative;
+      background: #ffffff;
+      padding: 14px 14px 22px;
+      border-radius: 6px;
+      box-shadow: var(--shadow-pin);
+      transition: transform 0.25s ease, box-shadow 0.25s ease;
+      cursor: pointer;
+      color: var(--text-main);
+    }
+    .polaroid-card:nth-child(1) { transform: rotate(-2deg); }
+    .polaroid-card:nth-child(2) { transform: rotate(2.5deg); }
+    .polaroid-card:nth-child(3) { transform: rotate(-1.5deg); }
+
+    .polaroid-card:hover {
+      transform: scale(1.04) rotate(0deg) !important;
+      z-index: 20;
+      box-shadow: 0 24px 40px rgba(0, 0, 0, 0.6);
+    }
+
+    .polaroid-card img {
+      width: 100%;
+      aspect-ratio: 1/1;
+      object-fit: cover;
+      display: block;
+      border-radius: 4px;
+      background: #e2e8f0;
+    }
+
+    .polaroid-caption {
+      font-family: var(--font-note);
+      font-size: 1.5rem;
+      color: #0f172a;
+      text-align: center;
+      margin-top: 14px;
+    }
+
+    .coming-soon-card {
+      position: relative;
+      background: #1e293b;
+      border: 2px dashed #475569;
+      padding: 24px;
+      border-radius: 6px;
+      box-shadow: var(--shadow-pin);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      min-height: 280px;
+      transform: rotate(2deg);
+    }
+    .coming-soon-card p {
+      font-family: var(--font-note);
+      font-size: 1.85rem;
+      color: var(--accent-blue);
+      line-height: 1.3;
+    }
+
+    /* Pinned Audio Turntable Box */
+    .music-board-card {
+      position: relative;
+      background: #ffffff;
+      border-radius: 12px;
+      padding: 34px 28px;
+      box-shadow: var(--shadow-pin);
+      max-width: 580px;
+      margin: 0 auto;
+      color: var(--text-main);
+      transform: rotate(-0.5deg);
+    }
+
+    .turntable-wrapper {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      margin-bottom: 22px;
+    }
+
+    .vinyl-disc {
+      width: 180px;
+      height: 180px;
+      border-radius: 50%;
+      background: repeating-radial-gradient(#09090b 0, #18181b 3px, #000000 6px);
+      border: 6px solid #18181b;
+      box-shadow: 0 12px 28px rgba(0, 0, 0, 0.45);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: transform 0.3s;
+    }
+    .vinyl-label {
+      width: 66px;
+      height: 66px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, #1d4ed8, #38bdf8);
+      border: 4px solid #ffffff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #ffffff;
+      font-size: 1.2rem;
+      font-weight: 700;
+    }
+    .spin {
+      animation: spinDisc 4s linear infinite;
+    }
+    @keyframes spinDisc {
+      100% { transform: rotate(360deg); }
+    }
+
+    .track-meta {
+      text-align: center;
+      margin-top: 16px;
+    }
+    .track-title {
+      font-size: 1.35rem;
+      font-weight: 700;
+      color: #0f172a;
+    }
+    .track-artist {
+      color: var(--text-muted);
+      font-size: 1.15rem;
+      font-family: var(--font-note);
+    }
+
+    .player-controls {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 16px;
+      margin: 20px 0;
+    }
+    .ctrl-btn {
+      padding: 10px 20px;
+      border-radius: 9999px;
+      border: 1.5px solid #cbd5e1;
+      background: #ffffff;
+      color: #0f172a;
+      font-weight: 700;
+      font-size: 0.9rem;
+      cursor: pointer;
+      transition: all 0.15s ease;
+    }
+    .ctrl-btn.play-btn {
+      background: #0f172a;
+      color: #ffffff;
+      border-color: #0f172a;
+      padding: 12px 28px;
+    }
+    .ctrl-btn:hover {
+      transform: scale(1.04);
+      border-color: #0f172a;
+    }
+
+    .search-input {
+      width: 100%;
+      padding: 12px 16px;
+      border: 1.5px solid #e2e8f0;
+      border-radius: 8px;
+      font-size: 0.9rem;
+      outline: none;
+      margin-bottom: 12px;
+      background: #f8fafc;
+      font-family: inherit;
+    }
+    .search-input:focus {
+      border-color: var(--accent-navy);
+      background: #ffffff;
+    }
+
+    .playlist-scroll {
+      list-style: none;
+      max-height: 180px;
+      overflow-y: auto;
+    }
+    .song-row {
+      padding: 12px 14px;
+      border-bottom: 1px solid #f1f5f9;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      cursor: pointer;
+      border-radius: 6px;
+      font-size: 0.95rem;
+      font-weight: 500;
+      transition: background 0.15s ease;
+    }
+    .song-row:hover {
+      background: #f1f5f9;
+    }
+    .song-row.active {
+      background: #eff6ff;
+      color: var(--accent-navy);
+      font-weight: 700;
+    }
+
+    footer {
+      text-align: center;
+      margin-top: 55px;
+    }
+    .footer-note {
+      font-family: var(--font-note);
+      font-size: 1.6rem;
+      color: #94a3b8;
+    }
+    .footer-note span {
+      color: var(--accent-blue);
     }
   </style>
 </head>
 <body>
 
-  <!-- Top Navigation -->
-  <header class="navbar">
-    <div class="container">
-      <a href="#home" class="nav-brand" aria-label="Home">
-        <div class="brand-icon">A</div>
-        <span>CoreApp</span>
-      </a>
-      <nav aria-label="Main Navigation">
-        <ul class="nav-links">
-          <li><a href="#features" class="active">Features</a></li>
-          <li><a href="#data">Analytics</a></li>
-          <li><a href="#contact">Contact</a></li>
-        </ul>
-      </nav>
-      <div class="nav-actions">
-        <button class="theme-toggle-btn" id="themeToggle" aria-label="Toggle Color Theme">
-          <svg id="themeIcon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-            <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
-          </svg>
-        </button>
-        <a href="#contact" class="btn btn-primary">Get Started</a>
+  <div id="lockScreen">
+    <div class="lock-card">
+      <div class="push-pin"></div>
+      <h2 class="lock-title">Pinned for Esha ⚡</h2>
+      <p class="lock-sub">Enter your 8-digit birthday code (DDMMYYYY)</p>
+      <div class="pin-group">
+        <input type="password" maxlength="1" class="pin-box" autofocus inputmode="numeric">
+        <input type="password" maxlength="1" class="pin-box" inputmode="numeric">
+        <input type="password" maxlength="1" class="pin-box" inputmode="numeric">
+        <input type="password" maxlength="1" class="pin-box" inputmode="numeric">
+        <input type="password" maxlength="1" class="pin-box" inputmode="numeric">
+        <input type="password" maxlength="1" class="pin-box" inputmode="numeric">
+        <input type="password" maxlength="1" class="pin-box" inputmode="numeric">
+        <input type="password" maxlength="1" class="pin-box" inputmode="numeric">
       </div>
+      <div id="pinMsg" class="pin-err"></div>
     </div>
-  </header>
+  </div>
 
-  <main>
-    <!-- Hero Section -->
-    <section class="hero container" id="home">
-      <div class="hero-badge">Architecture Framework v2.4</div>
-      <h1>Scalable interfaces built with <span>pure semantic clarity</span></h1>
-      <p>A unified foundation implementing strict responsive layout rules, theme variables, accessible components, and resilient structural behaviors.</p>
-      <div class="hero-cta-group">
-        <a href="#features" class="btn btn-primary">Explore Platform</a>
-        <a href="#data" class="btn btn-secondary">View Benchmarks</a>
-      </div>
-    </section>
+  <div id="boardContent">
+    
+    <header class="board-header">
+      <div class="push-pin"></div>
+      <h1>Esha's Board <span>⚡</span></h1>
+    </header>
 
-    <!-- Features Section -->
-    <section class="section section-alt" id="features">
-      <div class="container">
-        <div class="section-header">
-          <h2>Core Architectural Strengths</h2>
-          <p>Carefully engineered layers ensuring performance, compliance, and modular maintainability.</p>
-        </div>
-        <div class="features-grid">
-          <div class="feature-card">
-            <div class="feature-icon-wrapper">⚡</div>
-            <h3>Zero Dependency Layout</h3>
-            <p>Constructed entirely with pure CSS variables and modern HTML5 specifications to eliminate unnecessary bundle weights and render latency.</p>
-          </div>
-          <div class="feature-card">
-            <div class="feature-icon-wrapper">🛡️</div>
-            <h3>WCAG 2.1 Compliant</h3>
-            <p>Designed with standard contrast ratios, accessible form states, clear focus boundaries, and semantic document hierarchies.</p>
-          </div>
-          <div class="feature-card">
-            <div class="feature-icon-wrapper">🌗</div>
-            <h3>Dynamic Theme Engine</h3>
-            <p>Instant light and dark mode toggling handled locally with CSS custom property overrides and persistence-ready event listeners.</p>
-          </div>
-        </div>
+    <span class="section-label">Moments & Memories 📷</span>
+    <div class="gallery-grid">
+      
+      <div class="polaroid-card">
+        <div class="push-pin"></div>
+        <img src="photo1.jpg" alt="Memory 1">
+        <div class="polaroid-caption">unfiltered vibe ⚡</div>
       </div>
-    </section>
 
-    <!-- Data Benchmarks / Interactive Section -->
-    <section class="section" id="data">
-      <div class="container">
-        <div class="section-header">
-          <h2>Runtime Metrics</h2>
-          <p>Real-world benchmark measurements across critical performance and accessibility vectors.</p>
-        </div>
-        <div class="table-container">
-          <table>
-            <thead>
-              <tr>
-                <th>Test Identifier</th>
-                <th>Target Scope</th>
-                <th>Measured Latency</th>
-                <th>Status</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td>Core Web Vitals - LCP</td>
-                <td>Initial Layout Load</td>
-                <td>0.48 s</td>
-                <td><span class="badge-status badge-active">Passed</span></td>
-              </tr>
-              <tr>
-                <td>Cumulative Layout Shift (CLS)</td>
-                <td>Responsive Breakpoint Shifts</td>
-                <td>0.00</td>
-                <td><span class="badge-status badge-active">Passed</span></td>
-              </tr>
-              <tr>
-                <td>Contrast Audit Ratio</td>
-                <td>Light & Dark Themes</td>
-                <td>7.2:1 (AAA)</td>
-                <td><span class="badge-status badge-active">Passed</span></td>
-              </tr>
-              <tr>
-                <td>DOM Paint Timing (FCP)</td>
-                <td>Static Structure Parsing</td>
-                <td>0.21 s</td>
-                <td><span class="badge-status badge-active">Passed</span></td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
+      <div class="polaroid-card">
+        <div class="push-pin"></div>
+        <img src="photo2.jpg" alt="Memory 2">
+        <div class="polaroid-caption">stay iconic ✨</div>
       </div>
-    </section>
 
-    <!-- Contact & Feedback Section -->
-    <section class="section section-alt" id="contact">
-      <div class="container">
-        <div class="section-header">
-          <h2>Initiate Collaboration</h2>
-          <p>Send an direct query or message via the structured interface below.</p>
-        </div>
-        <div class="form-wrapper">
-          <form id="contactForm" onsubmit="event.preventDefault(); alert('Message dispatched successfully.');">
-            <div class="form-group">
-              <label for="fullName">Full Name</label>
-              <input type="text" id="fullName" class="form-control" placeholder="e.g., Jane Doe" required />
-            </div>
-            <div class="form-group">
-              <label for="emailAddress">Email Address</label>
-              <input type="email" id="emailAddress" class="form-control" placeholder="jane@example.com" required />
-            </div>
-            <div class="form-group">
-              <label for="messageText">Project Overview / Inquiry</label>
-              <textarea id="messageText" class="form-control" placeholder="Detail your project requirements..." required></textarea>
-            </div>
-            <button type="submit" class="btn btn-primary" style="width: 100%;">Dispatch Transmission</button>
-          </form>
-        </div>
+      <div class="polaroid-card">
+        <div class="push-pin"></div>
+        <img src="photo3.jpg" alt="Memory 3">
+        <div class="polaroid-caption">pure legend 🌊</div>
       </div>
-    </section>
-  </main>
 
-  <!-- Global Footer -->
-  <footer>
-    <div class="container">
-      <div class="footer-grid">
-        <div class="footer-column">
-          <h4>CoreApp</h4>
-          <p style="color: var(--text-muted); font-size: 0.9rem; line-height: 1.5;">
-            Providing structured semantic boilerplate templates for responsive design systems.
-          </p>
-        </div>
-        <div class="footer-column">
-          <h4>Architecture</h4>
-          <ul>
-            <li><a href="#features">Components</a></li>
-            <li><a href="#data">Analytics</a></li>
-            <li><a href="#home">Specification</a></li>
-          </ul>
-        </div>
-        <div class="footer-column">
-          <h4>Resources</h4>
-          <ul>
-            <li><a href="#">Documentation</a></li>
-            <li><a href="#">API Schemas</a></li>
-            <li><a href="#">Release Logs</a></li>
-          </ul>
-        </div>
+      <div class="coming-soon-card">
+        <div class="push-pin"></div>
+        <p>⚡ More snapshots coming soon...</p>
       </div>
-      <div class="footer-bottom">
-        <p>&copy; 2026 CoreApp Design Systems. All rights reserved.</p>
-      </div>
+
     </div>
-  </footer>
 
-  <!-- Script: Theme Controller -->
+    <div style="text-align: center; margin-bottom: 16px;">
+      <span class="section-label">Favorite Soundtracks 🎵</span>
+    </div>
+    
+    <div class="music-board-card">
+      <div class="push-pin"></div>
+      
+      <div class="turntable-wrapper">
+        <div id="disc" class="vinyl-disc">
+          <div class="vinyl-label">⚡</div>
+        </div>
+        <div class="track-meta">
+          <div id="currTitle" class="track-title">Multo</div>
+          <div id="currArtist" class="track-artist">Cup of Joe</div>
+        </div>
+      </div>
+
+      <audio id="audioElement" preload="auto"></audio>
+
+      <div class="player-controls">
+        <button class="ctrl-btn" onclick="prevSong()">⏮ Prev</button>
+        <button id="playBtn" class="ctrl-btn play-btn" onclick="togglePlay()">▶ Play</button>
+        <button class="ctrl-btn" onclick="nextSong()">Next ⏭</button>
+      </div>
+
+      <input type="text" id="searchBar" class="search-input" placeholder="🔍 Search songs..." oninput="filterSongs()">
+      <ul id="songList" class="playlist-scroll"></ul>
+    </div>
+
+    <footer>
+      <p class="footer-note">curated with <span>⚡</span> for esha</p>
+    </footer>
+
+  </div>
+
   <script>
-    (function () {
-      const themeToggleBtn = document.getElementById('themeToggle');
-      const rootElement = document.documentElement;
+    // 1. PIN Gate Logic (29102007)
+    const TARGET_PIN = "29102007";
+    const inputs = document.querySelectorAll('.pin-box');
+    const pinMsg = document.getElementById('pinMsg');
 
-      const sunIcon = `<circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>`;
-      const moonIcon = `<path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>`;
+    inputs.forEach((input, idx) => {
+      input.addEventListener('input', () => {
+        if (input.value && idx < inputs.length - 1) inputs[idx + 1].focus();
+        checkPin();
+      });
+      input.addEventListener('keydown', (e) => {
+        if (e.key === 'Backspace' && !input.value && idx > 0) inputs[idx - 1].focus();
+      });
+    });
 
-      function setTheme(isDark) {
-        if (isDark) {
-          rootElement.setAttribute('data-theme', 'dark');
-          themeToggleBtn.querySelector('svg').innerHTML = sunIcon;
+    function checkPin() {
+      const entered = Array.from(inputs).map(i => i.value).join('');
+      if (entered.length === 8) {
+        if (entered === TARGET_PIN) {
+          document.getElementById('lockScreen').style.display = 'none';
+          document.getElementById('boardContent').style.display = 'block';
+          initPlayer();
         } else {
-          rootElement.removeAttribute('data-theme');
-          themeToggleBtn.querySelector('svg').innerHTML = moonIcon;
+          pinMsg.textContent = "Incorrect code";
+          inputs.forEach(i => i.value = '');
+          inputs[0].focus();
         }
       }
+    }
 
-      const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-      let currentDark = prefersDark;
-      setTheme(currentDark);
+    // 2. Playlist & Player Logic
+    const playlist = [
+      { title: "Multo", artist: "Cup of Joe", src: "multo.mp3" },
+      { title: "Be Kind", artist: "Halsey", src: "bekind.mp3" },
+      { title: "Worst of You", artist: "Maisie Peters", src: "worstofu.mp3" }
+    ];
 
-      themeToggleBtn.addEventListener('click', () => {
-        currentDark = !currentDark;
-        setTheme(currentDark);
+    let currentIndex = 0;
+    const audio = document.getElementById('audioElement');
+    const disc = document.getElementById('disc');
+    const playBtn = document.getElementById('playBtn');
+
+    function initPlayer() {
+      const s = playlist[currentIndex];
+      audio.src = s.src;
+      document.getElementById('currTitle').textContent = s.title;
+      document.getElementById('currArtist').textContent = s.artist;
+      renderSongs(playlist);
+    }
+
+    function renderSongs(list) {
+      const ul = document.getElementById('songList');
+      ul.innerHTML = '';
+      list.forEach((s) => {
+        const originalIndex = playlist.indexOf(s);
+        const li = document.createElement('li');
+        li.className = `song-row ${originalIndex === currentIndex ? 'active' : ''}`;
+        li.innerHTML = `<span>${s.title}</span><span style="color:var(--text-muted); font-size:0.85rem">${s.artist}</span>`;
+        li.onclick = () => loadAndPlay(originalIndex);
+        ul.appendChild(li);
       });
-    })();
+    }
+
+    function loadAndPlay(idx) {
+      currentIndex = idx;
+      const s = playlist[idx];
+      audio.src = s.src;
+      document.getElementById('currTitle').textContent = s.title;
+      document.getElementById('currArtist').textContent = s.artist;
+      
+      audio.play().then(() => {
+        disc.classList.add('spin');
+        playBtn.textContent = '⏸ Pause';
+      }).catch(err => {
+        console.warn("Audio playback waiting for user tap:", err);
+      });
+      renderSongs(playlist);
+    }
+
+    function togglePlay() {
+      if (!audio.src) {
+        loadAndPlay(0);
+        return;
+      }
+      if (audio.paused) {
+        audio.play().then(() => {
+          disc.classList.add('spin');
+          playBtn.textContent = '⏸ Pause';
+        }).catch(err => console.error("Playback error:", err));
+      } else {
+        audio.pause();
+        disc.classList.remove('spin');
+        playBtn.textContent = '▶ Play';
+      }
+    }
+
+    function prevSong() {
+      currentIndex = (currentIndex - 1 + playlist.length) % playlist.length;
+      loadAndPlay(currentIndex);
+    }
+
+    function nextSong() {
+      currentIndex = (currentIndex + 1) % playlist.length;
+      loadAndPlay(currentIndex);
+    }
+
+    function filterSongs() {
+      const q = document.getElementById('searchBar').value.toLowerCase();
+      renderSongs(playlist.filter(s => s.title.toLowerCase().includes(q) || s.artist.toLowerCase().includes(q)));
+    }
+
+    audio.onended = nextSong;
   </script>
 </body>
 </html>
