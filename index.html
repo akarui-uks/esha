@@ -401,7 +401,7 @@
   <div id="lockScreen">
     <div class="lock-card">
       <div class="push-pin"></div>
-      <h2 class="lock-title">Pinned for u ⚡</h2>
+      <h2 class="lock-title">Pinned for her 💕</h2>
       <p class="lock-sub">Enter the code</p>
       <div class="pin-group">
         <input type="password" maxlength="1" class="pin-box" autofocus inputmode="numeric">
@@ -519,11 +519,26 @@
       }
     }
 
-    // 2. Playlist & Player Logic (image filename automatically matches audio filename with .jpg)
+    // 2. Playlist & Player Logic 
     const playlist = [
-      { title: "Multo", artist: "Cup of Joe", src: "multo.mp3" },
-      { title: "Be Kind", artist: "Halsey", src: "bekind.mp3" },
-      { title: "Worst of You", artist: "Maisie Peters", src: "worstofu.mp3" }
+      { 
+        title: "Multo", 
+        artist: "Cup of Joe", 
+        src: "multo.mp3", 
+        img: "multojpg" // <-- Name whatever image you want
+      },
+      { 
+        title: "Be Kind", 
+        artist: "Halsey", 
+        src: "bekind.mp3", 
+        img: "bekind.jpg" // <-- Custom image name
+      },
+      { 
+        title: "Worst of You", 
+        artist: "Maisie Peters", 
+        src: "worstofu.mp3", 
+        img: "worstofu.jpg" // <-- Custom image name
+      }
     ];
 
     let currentIndex = 0;
