@@ -73,7 +73,7 @@
       border-radius: 50%;
     }
 
-    /* Lock Screen Modal */
+    /* Lock Screen */
     #lockScreen {
       position: fixed;
       inset: 0;
@@ -147,7 +147,7 @@
       height: 20px;
     }
 
-    /* Main Board Container */
+    /* Main Board */
     #boardContent {
       display: none;
       width: 100%;
@@ -159,7 +159,6 @@
       to { opacity: 1; transform: scale(1) translateY(0); }
     }
 
-    /* Main Board Header Tag */
     .board-header {
       position: relative;
       background: #ffffff;
@@ -260,61 +259,45 @@
       line-height: 1.3;
     }
 
-    /* Pinned Audio Turntable Box */
+    /* Pinned Audio Player Box */
     .music-board-card {
       position: relative;
       background: #ffffff;
       border-radius: 12px;
       padding: 34px 28px;
       box-shadow: var(--shadow-pin);
-      max-width: 580px;
+      max-width: 540px;
       margin: 0 auto;
       color: var(--text-main);
       transform: rotate(-0.5deg);
     }
 
-    .turntable-wrapper {
+    .cover-wrapper {
       display: flex;
       flex-direction: column;
       align-items: center;
-      margin-bottom: 22px;
+      margin-bottom: 18px;
     }
 
-    .vinyl-disc {
-      width: 180px;
-      height: 180px;
-      border-radius: 50%;
-      background: repeating-radial-gradient(#09090b 0, #18181b 3px, #000000 6px);
-      border: 6px solid #18181b;
-      box-shadow: 0 12px 28px rgba(0, 0, 0, 0.45);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      transition: transform 0.3s;
+    /* Song Cover Art (Replaces Vinyl Disc) */
+    .song-cover {
+      width: 190px;
+      height: 190px;
+      border-radius: 12px;
+      object-fit: cover;
+      display: block;
+      box-shadow: 0 10px 24px rgba(0, 0, 0, 0.35);
+      border: 3px solid #f1f5f9;
+      background-color: #0f172a;
+      transition: transform 0.25s ease;
     }
-    .vinyl-label {
-      width: 66px;
-      height: 66px;
-      border-radius: 50%;
-      background: linear-gradient(135deg, #1d4ed8, #38bdf8);
-      border: 4px solid #ffffff;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      color: #ffffff;
-      font-size: 1.2rem;
-      font-weight: 700;
-    }
-    .spin {
-      animation: spinDisc 4s linear infinite;
-    }
-    @keyframes spinDisc {
-      100% { transform: rotate(360deg); }
+    .song-cover:hover {
+      transform: scale(1.02);
     }
 
     .track-meta {
       text-align: center;
-      margin-top: 16px;
+      margin-top: 14px;
     }
     .track-title {
       font-size: 1.35rem;
@@ -408,12 +391,13 @@
       color: #94a3b8;
     }
     .footer-note span {
-      color: var(--accent-blue);
+      color: #ef4444;
     }
   </style>
 </head>
 <body>
 
+  <!-- 8-Digit Code Entry -->
   <div id="lockScreen">
     <div class="lock-card">
       <div class="push-pin"></div>
@@ -440,6 +424,7 @@
       <h1>Esha's Board <span>⚡</span></h1>
     </header>
 
+    <!-- Pinned Photos -->
     <span class="section-label">Moments & Memories 📷</span>
     <div class="gallery-grid">
       
@@ -468,6 +453,7 @@
 
     </div>
 
+    <!-- Pinned Soundtracks Section -->
     <div style="text-align: center; margin-bottom: 16px;">
       <span class="section-label">Favorite Soundtracks 🎵</span>
     </div>
@@ -475,10 +461,9 @@
     <div class="music-board-card">
       <div class="push-pin"></div>
       
-      <div class="turntable-wrapper">
-        <div id="disc" class="vinyl-disc">
-          <div class="vinyl-label">⚡</div>
-        </div>
+      <div class="cover-wrapper">
+        <!-- Song Cover Image matching audio filename (.jpg) -->
+        <img id="songCoverImg" class="song-cover" src="multo.jpg" alt="Song Cover" onerror="this.src='photo1.jpg'">
         <div class="track-meta">
           <div id="currTitle" class="track-title">Multo</div>
           <div id="currArtist" class="track-artist">Cup of Joe</div>
@@ -534,7 +519,7 @@
       }
     }
 
-    // 2. Playlist & Player Logic
+    // 2. Playlist & Player Logic (image filename automatically matches audio filename with .jpg)
     const playlist = [
       { title: "Multo", artist: "Cup of Joe", src: "multo.mp3" },
       { title: "Be Kind", artist: "Halsey", src: "bekind.mp3" },
@@ -543,14 +528,21 @@
 
     let currentIndex = 0;
     const audio = document.getElementById('audioElement');
-    const disc = document.getElementById('disc');
+    const coverImg = document.getElementById('songCoverImg');
     const playBtn = document.getElementById('playBtn');
+
+    function updateTrackDisplay(s) {
+      document.getElementById('currTitle').textContent = s.title;
+      document.getElementById('currArtist').textContent = s.artist;
+      // Derive image name by swapping .mp3 for .jpg
+      const imgPath = s.src.replace(/\.[^/.]+$/, "") + ".jpg";
+      coverImg.src = imgPath;
+    }
 
     function initPlayer() {
       const s = playlist[currentIndex];
       audio.src = s.src;
-      document.getElementById('currTitle').textContent = s.title;
-      document.getElementById('currArtist').textContent = s.artist;
+      updateTrackDisplay(s);
       renderSongs(playlist);
     }
 
@@ -571,14 +563,12 @@
       currentIndex = idx;
       const s = playlist[idx];
       audio.src = s.src;
-      document.getElementById('currTitle').textContent = s.title;
-      document.getElementById('currArtist').textContent = s.artist;
+      updateTrackDisplay(s);
       
       audio.play().then(() => {
-        disc.classList.add('spin');
         playBtn.textContent = '⏸ Pause';
       }).catch(err => {
-        console.warn("Audio playback waiting for user tap:", err);
+        console.warn("Audio playback gesture needed:", err);
       });
       renderSongs(playlist);
     }
@@ -590,12 +580,10 @@
       }
       if (audio.paused) {
         audio.play().then(() => {
-          disc.classList.add('spin');
           playBtn.textContent = '⏸ Pause';
         }).catch(err => console.error("Playback error:", err));
       } else {
         audio.pause();
-        disc.classList.remove('spin');
         playBtn.textContent = '▶ Play';
       }
     }
