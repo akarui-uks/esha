@@ -540,7 +540,8 @@
         img: "worstofu.jpg" // <-- Custom image name
       }
     ];
-
+     
+    
     let currentIndex = 0;
     const audio = document.getElementById('audioElement');
     const coverImg = document.getElementById('songCoverImg');
@@ -549,9 +550,7 @@
     function updateTrackDisplay(s) {
       document.getElementById('currTitle').textContent = s.title;
       document.getElementById('currArtist').textContent = s.artist;
-      // Derive image name by swapping .mp3 for .jpg
-      const imgPath = s.src.replace(/\.[^/.]+$/, "") + ".jpg";
-      coverImg.src = imgPath;
+      coverImg.src = s.img; // Uses the exact manual image name you defined above
     }
 
     function initPlayer() {
