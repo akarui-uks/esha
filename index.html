@@ -279,7 +279,7 @@
       margin-bottom: 18px;
     }
 
-    /* Song Cover Art (Replaces Vinyl Disc) */
+    /* Song Cover Art */
     .song-cover {
       width: 190px;
       height: 190px;
@@ -462,7 +462,6 @@
       <div class="push-pin"></div>
       
       <div class="cover-wrapper">
-        <!-- Song Cover Image matching audio filename (.jpg) -->
         <img id="songCoverImg" class="song-cover" src="multo.jpg" alt="Song Cover" onerror="this.src='photo1.jpg'">
         <div class="track-meta">
           <div id="currTitle" class="track-title">Multo</div>
@@ -519,29 +518,28 @@
       }
     }
 
-    // 2. Playlist & Player Logic 
+    // 2. Playlist & Player Logic
     const playlist = [
       { 
         title: "Multo", 
         artist: "Cup of Joe", 
         src: "multo.mp3", 
-        img: "multojpg" // <-- Name whatever image you want
+        img: "multo.jpg" 
       },
       { 
         title: "Be Kind", 
         artist: "Halsey", 
         src: "bekind.mp3", 
-        img: "bekind.jpg" // <-- Custom image name
+        img: "bekind.jpg" 
       },
       { 
         title: "Worst of You", 
         artist: "Maisie Peters", 
         src: "worstofu.mp3", 
-        img: "worstofu.jpg" // <-- Custom image name
+        img: "worstofu.jpg" 
       }
     ];
-     
-    
+
     let currentIndex = 0;
     const audio = document.getElementById('audioElement');
     const coverImg = document.getElementById('songCoverImg');
@@ -550,7 +548,7 @@
     function updateTrackDisplay(s) {
       document.getElementById('currTitle').textContent = s.title;
       document.getElementById('currArtist').textContent = s.artist;
-      coverImg.src = s.img; // Uses the exact manual image name you defined above
+      coverImg.src = s.img;
     }
 
     function initPlayer() {
